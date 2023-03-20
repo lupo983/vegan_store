@@ -1,0 +1,6 @@
+carne
+pollo
+manzo
+cavallo
+maiale
+prosciutto
