@@ -1,34 +1,37 @@
 from Product import Product
 
-def printOperations():
-    print("Operazioni consentite (digita numero per eseguire operazione):")
-    print("(1) Aggiungi un prodotto al magazzino")
-    print("(2) Elenca i prodotto in magazzino")
-    print("(3) Registra una vendita effettuata")
-    print("(4) Mostra i profitti totali")
-    print("(0) Esci dal programma")
+def helper():
+    print("I comandi disponibili sono i seguenti\n")
+    print("aggiungi: aggiungi un prodotto al magazzino")
+    print("elenca: elenca i prodotto in magazzino")
+    print("vendita: registra una vendita effettuata")
+    print("profitti: mostra i profitti totali")
+    print("aiuto: mostra i possibili comandi")
+    print("chiudi: esci dal programma")
+    print("\n")
 
-prod_dict = {"nome_prodotto": 0, "quantita": 0, "prezzo_acquisto": 0.0, "prezzo_vendita": 0.0}
+prod_dict = {"product_name": 0, "amount": 0, "purchase_price": 0.0, "sale_price": 0.0}
+
 prod = Product(prod_dict)
 
 cmd = None
 
-while (cmd != 0):
+while (cmd != "chiudi"):
     
-    printOperations()
-    cmd = int(input("Inserisci numero operazione: "))
+    cmd = input("Inserisci un comando: ")
 
-    if cmd == 1:       
-        prod.aggiungi()
-    elif cmd == 2:       
-        prod.elenca()
-    elif cmd == 3:       
-        prod.vendita()
-    elif cmd == 4:       
-        prod.profitto()
-    elif cmd == 0:
-        print("BYE BYE")
+    if cmd == "vendita":
+        prod.sale_products()
+    elif cmd == "profitti":
+        prod.gain_products()
+    elif cmd == "aggiungi":       
+        prod.add_products()
+    elif cmd == "elenca":       
+        prod.list_products()
+    elif cmd == "aiuto":       
+        helper()
+    elif cmd == "chiudi":       
+        print("Bye bye")
     else:
-        print("Valore inserito non valido. Inserisci valore corretto")
-
-        
+        print("Comando non valido")
+        helper()

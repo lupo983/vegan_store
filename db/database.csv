@@ -1,5 +1,6 @@
-nome_prodotto;quantita;prezzo_acquisto;prezzo_vendita
+product_name;amount;purchase_price;sale_price
 Lenticchie;13;1.0;2.0
 tofu;71;1.0;2.0
 ceci;55;0.1;0.2
-Latte di soia;34;0.25;0.38
+latte di soia;22;1.1;1.4
+Fagioli;23;0.13;0.16
