@@ -144,6 +144,7 @@ class Product:
             for product in products:
                 print(f"{product['product_name']} {product['amount']} €{product['sale_price']}")
         
+        print("\n")
         return None
 
     def sale_products(self):
