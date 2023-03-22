@@ -53,12 +53,18 @@ class Product:
                             option = int(input("Input non valido. Se vuoi aggiornare solo il quantitativo digita 1. In caso vuoi aggiornare anche Prezzo di acquisto: e di vendita digita 2: "))
 
                         if option == 1:
-                            amount = int(input("Quantità: "))
-                            assert(type(amount) == int), "This is not an int value"
+                            amount = input("Quantità: ")
+                            while not self.is_value_specified(amount, "int"):
+                                amount = input("Quantità: ")                            
+                            amount = int(amount)
+
                             while amount < 0:
                                 print("Valore negativo non consentito. Inserire valore maggiore o uguale a 0")
-                                amount = int(input("Quantità: "))
-                                assert(type(amount) == int), "This is not an int value"
+                                amount = input("Quantità: ")
+                                while not self.is_value_specified(amount, "int"):
+                                    amount = input("Quantità: ")                            
+                                amount = int(amount)
+                                
                                 if  amount == 0:
                                     return print("Nessun quantitativo inserito\n")
 
@@ -68,19 +74,61 @@ class Product:
                             self._prod["sale_price"] = product["sale_price"]
 
                         if option == 2:
-                            amount = int(input("Quantità: "))
-                            assert(type(amount) == int), "This is not an int value"
+                            amount = input("Quantità: ")
+                            while not self.is_value_specified(amount, "int"):
+                                amount = input("Quantità: ")                            
+                            amount = int(amount)
+
                             while amount < 0:
                                 print("Valore negativo non consentito. Inserire valore maggiore o uguale a 0")
-                                amount = int(input("Quantità: "))
-                                assert(type(amount) == int), "This is not an int value"
+                                amount = input("Quantità: ")
+                                while not self.is_value_specified(amount, "int"):
+                                    amount = input("Quantità: ")                            
+                                amount = int(amount)
+                                
                                 if  amount == 0:
                                     return print("Nessun quantitativo inserito\n")
 
+                            purchase_price = input("Prezzo di acquisto: ")
+                            while not self.is_value_specified(purchase_price, "float"):
+                                purchase_price = input("Prezzo di acquisto: ")                            
+                            purchase_price = round(float(purchase_price), 2)
+                            while purchase_price <= 0:
+                                print("Valore inserito non valido. Inserire valore maggiore di 0")
+                                purchase_price = input("Prezzo di acquisto: ")
+                                while not self.is_value_specified(purchase_price, "float"):
+                                    purchase_price = input("Prezzo di acquisto: ")                            
+                                purchase_price = round(float(purchase_price), 2)
+
+                            sale_price = input("Prezzo di vendita: ")
+                            while not self.is_value_specified(sale_price, "float"):
+                                sale_price = input("Prezzo di vendita: ")                            
+                            sale_price = round(float(sale_price), 2)
+                            while sale_price <= 0:
+                                print("Valore inserito non valido. Inserire valore maggiore di 0")
+                                sale_price = input("Prezzo di vendita: ")
+                                while not self.is_value_specified(sale_price, "float"):
+                                    sale_price = input("Prezzo di vendita: ")                            
+                                sale_price = round(float(sale_price), 2)
+
+                            while sale_price <= purchase_price:
+                                print("Dovremmo provare a guadagnare qualcosa. Non possiamo vivere per la gloria")
+                                print("Inserisci Prezzo di vendita: superiore al Prezzo di acquisto:")
+                                sale_price = input("Prezzo di vendita: ")
+                                while not self.is_value_specified(sale_price, "float"):
+                                    sale_price = input("Prezzo di vendita: ")                            
+                                sale_price = round(float(sale_price), 2)
+                                while sale_price <= 0:
+                                    print("Valore inserito non valido. Inserire valore maggiore di 0")
+                                    sale_price = input("Prezzo di vendita: ")
+                                    while not self.is_value_specified(sale_price, "float"):
+                                        sale_price = input("Prezzo di vendita: ")                            
+                                sale_price = round(float(sale_price), 2)
+
                             self._prod["product_name"] = product_name
                             self._prod["amount"] = amount
-                            self._prod["purchase_price"] = round(float(input("Prezzo di acquisto: ")), 2)
-                            self._prod["sale_price"] = round(float(input("Prezzo di vendita: ")), 2)
+                            self._prod["purchase_price"] = purchase_price 
+                            self._prod["sale_price"] = sale_price
 
                         listProducts.append(self._prod.copy())
                     else:
@@ -92,34 +140,59 @@ class Product:
                         listProducts.append(self._prod.copy())
 
             if flg_new:
-                amount = int(input("Quantità: "))
-                assert(type(amount) == int), "This is not an int value"
+                amount = input("Quantità: ")
+                while not self.is_value_specified(amount, "int"):
+                    amount = input("Quantità: ")                            
+                amount = int(amount)
                 while amount < 0:
                     print("Valore negativo non consentito. Inserire valore maggiore o uguale a 0")
-                    amount = int(input("Quantità: "))
-                    assert(type(amount) == int), "This is not an int value"
+                    amount = input("Quantità: ")
+                    while not self.is_value_specified(amount, "int"):
+                        amount = input("Quantità: ")                            
+                    amount = int(amount)
                     if  amount == 0:
                         return print("Nessun quantitativo inserito\n")
 
-                purchase_price = round(float(input("Prezzo di acquisto: ")), 2)
+                purchase_price = input("Prezzo di acquisto: ")
+                while not self.is_value_specified(purchase_price, "float"):
+                    purchase_price = input("Prezzo di acquisto: ")                            
+                purchase_price = round(float(purchase_price), 2)
                 while purchase_price <= 0:
                     print("Valore inserito non valido. Inserire valore maggiore di 0")
-                    purchase_price = round(float(input("Prezzo di acquisto: ")), 2)
+                    purchase_price = input("Prezzo di acquisto: ")
+                    while not self.is_value_specified(purchase_price, "float"):
+                        purchase_price = input("Prezzo di acquisto: ")                            
+                    purchase_price = round(float(purchase_price), 2)
 
-                sale_price = round(float(input("Prezzo di vendita: ")), 2)
-                while purchase_price <= 0:
+                sale_price = input("Prezzo di vendita: ")
+                while not self.is_value_specified(sale_price, "float"):
+                    sale_price = input("Prezzo di vendita: ")                            
+                sale_price = round(float(sale_price), 2)
+                while sale_price <= 0:
                     print("Valore inserito non valido. Inserire valore maggiore di 0")
-                    purchase_price = round(float(input("Prezzo di acquisto: ")), 2)                    
+                    sale_price = input("Prezzo di vendita: ")
+                    while not self.is_value_specified(sale_price, "float"):
+                        sale_price = input("Prezzo di vendita: ")                            
+                    sale_price = round(float(sale_price), 2)                    
                 
+                while sale_price <= purchase_price:
+                    print("Dovremmo provare a guadagnare qualcosa. Non possiamo vivere per la gloria")
+                    print("Inserisci Prezzo di vendita: superiore al Prezzo di acquisto:")
+                    sale_price = input("Prezzo di vendita: ")
+                    while not self.is_value_specified(sale_price, "float"):
+                        sale_price = input("Prezzo di vendita: ")                            
+                    sale_price = round(float(sale_price), 2)
+                    while sale_price <= 0:
+                        print("Valore inserito non valido. Inserire valore maggiore di 0")
+                        sale_price = input("Prezzo di vendita: ")
+                        while not self.is_value_specified(sale_price, "float"):
+                            sale_price = input("Prezzo di vendita: ")                            
+                        sale_price = round(float(sale_price), 2)
+
                 self._prod["product_name"] = product_name
                 self._prod["amount"] = amount
                 self._prod["purchase_price"] = purchase_price
                 self._prod["sale_price"] = sale_price
-
-                while self._prod["sale_price"] <= self._prod["purchase_price"]:
-                    print("Dovremmo provare a guadagnare qualcosa. Non possiamo vivere per la gloria")
-                    print("Inserisci Prezzo di vendita: superiore al Prezzo di acquisto:")
-                    self._prod["sale_price"] = round(float(input("Prezzo di vendita: ")), 2)
 
                 listProducts.append(self._prod.copy())
 
@@ -152,6 +225,7 @@ class Product:
         """
         Register products sale
         """
+        list_products_sales = list()
         list_sales = list()
         with open(self.PATH_DB+self.SALES, encoding="utf-8") as sales_csv:
             sales = csv.DictReader(sales_csv, delimiter=";")
@@ -159,11 +233,10 @@ class Product:
                 list_sales.append(sale.copy())
 
         list_sale_act = list()
-
+        '''this var handles sale product: 1 register the sale 0 otherwise'''
+        flg_sale = 0
         cmd = None
         while cmd != "" and cmd != "N" and cmd != "n":
-            '''this var handles sale product: 1 register the sale 0 otherwise'''
-            flg_sale = 0
             '''check if product is into warehouse: 1 exists 0 otherwise'''
             flg_prod = 0
             max_amount = 0
@@ -178,11 +251,24 @@ class Product:
                         max_amount = int(product["amount"])
                         sale_price = round(float(product['sale_price']), 2)
                         purchase_price = round(float(product['purchase_price']), 2)
+            
             if flg_prod:
-                amount = int(input("Quantità: "))
+                amount = input("Quantità: ")
+                while not self.is_value_specified(amount, "int"):
+                    amount = input("Quantità: ")                            
+                amount = int(amount)
+                while amount < 0:
+                    print("Valore negativo non consentito. Inserire valore maggiore o uguale a 0")
+                    amount = input("Quantità: ")
+                    while not self.is_value_specified(amount, "int"):
+                        amount = input("Quantità: ")                            
+                amount = int(amount)
                 while amount > max_amount:
                     print("Quantità non disponibile in magazzino. Reinserire valore")
-                    amount = int(input("Quantità: "))
+                    amount = input("Quantità: ")
+                    while not self.is_value_specified(amount, "int"):
+                        amount = input("Quantità: ")                            
+                    amount = int(amount)
 
                 if amount == 0:
                     print("Vendita non effettuata\n")
@@ -206,8 +292,22 @@ class Product:
             print("VENDITA REGISTRATA")
             for sale in list_sale_act:
                 print(f"{sale['amount']} X {sale['product_name']}: €{sale['sale_price']}")
-                totale += round(float(sale['vendita']), 2)
+                totale += float(sale['vendita'])
+            totale = round(totale, 2)
             print(f"Totale: € {totale}\n")
+
+            with open(self.PATH_DB+self.DATABASE, encoding="utf-8") as products_csv:
+                ''' DictReader object skip row header '''
+                products = csv.DictReader(products_csv, delimiter=";")
+
+                for product in products:
+                    for sale in list_sale_act:
+                        if product["product_name"].lower().__eq__(sale["product_name"].lower()):
+                            product["amount"] = int(product["amount"]) - int(sale["amount"])
+                    list_products_sales.append(product)
+
+            if len(list_products_sales) > 0:
+                self.insert_db_value(self.DATABASE, ["product_name", "amount", "purchase_price", "sale_price"], list_products_sales)
 
     def gain_products(self):
         """
@@ -219,13 +319,17 @@ class Product:
         with open(self.PATH_DB+self.SALES, encoding="utf-8") as sales_csv:
             sales = csv.DictReader(sales_csv, delimiter=";")
             for sale in sales:
-                gross += round(float(sale['gross']), 2)
-                net += round(float(sale['net']), 2)
+                gross += float(sale['gross'])
+                net += float(sale['net'])
+            gross = round(gross, 2)
+            net = round(net, 2)
         return print(f"LORDO: €{gross}\nNETTO: €{net}\n")
 
     def is_vegan_food(self, product_name):
         """
         Check if the product is vegan or not
+
+        product_name (str): product name to check if exists in noveganfood file
         """
         with open(self.PATH_RESOURCES+self.NOVEGANFOOD) as novegans:
             for novegan in novegans.readlines():
@@ -233,6 +337,28 @@ class Product:
                     return 0
             
         return 1
+
+    def is_value_specified(self, value, type_value):
+        """
+        Check if passe value is int or float
+        
+        value (str): value to check
+        type_value (str): it can be int or float 
+        """
+
+        str_type_value = ""
+        try:
+            if type_value == "int":
+                str_type_value = "intero"
+                value = int(value)
+            elif type_value == "float":
+                str_type_value = "intero o decimale"
+                value = float(value)
+            return 1
+        except ValueError as ve:
+            print(f"Valore inserito non valido. Inserire valore {str_type_value}")
+            return 0
+        
 
     def insert_db_value(self, file_name, field_names, dict_data):
         """
