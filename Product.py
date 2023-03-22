@@ -126,7 +126,7 @@ class Product:
                                 sale_price = round(float(sale_price), 2)
 
                             self._prod["product_name"] = product_name
-                            self._prod["amount"] = amount
+                            self._prod["amount"] = int(product["amount"]) + amount
                             self._prod["purchase_price"] = purchase_price 
                             self._prod["sale_price"] = sale_price
 
@@ -341,7 +341,7 @@ class Product:
     def is_value_specified(self, value, type_value):
         """
         Check if passe value is int or float
-        
+
         value (str): value to check
         type_value (str): it can be int or float 
         """
